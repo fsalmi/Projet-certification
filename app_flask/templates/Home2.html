@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from https://bootdey.com  -->
+    <!--  All snippets are MIT license https://bootdey.com/license -->
+    <title>Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{
+  url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+<div class="container bootstrap snippets">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <!--mail inbox start-->
+            <div class="mail-box">
+                <aside class="sm-side">
+                    <div class="user-head">
+                        <a href="javascript:;" class="inbox-avatar">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-responsive">
+                        </a>
+                        <div class="user-name">
+                            <h5><a href="#">Choose a user here</a></h5>
+                            <span><a href="#"></a></span>
+                        </div>
+                        <div class="form-group">
+                            <form action='{{url_for("affiche_user")}}' method="POST">
+                                
+                                <select name="comp_select" class="form-control" style="width:75%" id="users">
+                                {% for each in users_dropdown %}
+                                    <option {% if each == selected_u  %} selected {% endif %}>
+                                   {{each}} 
+                                    </option> 
+                                {% endfor %}
+                                </select>  
+                                <input type="hidden"  name="selected_u" value="{{selected_u}}"/>
+                            </form>     
+                        </div>
+                    </div>
+                    <div class="inbox-body">
+                        <a class="btn btn-compose" data-toggle="modal" href="#myModal" data-original-title="" title="">
+                            Compose
+                        </a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title">Compose</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">To</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" class="form-control" id="inputEmail1" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">Cc / Bcc</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" class="form-control" id="cc" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">Subject</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" class="form-control" id="inputPassword1" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">Message</label>
+                                                <div class="col-lg-10">
+                                                    <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-2 col-lg-10">
+                                                    <span class="btn green fileinput-button" data-original-title="" title="">
+                                                      <i class="fa fa-plus fa fa-white"></i>
+                                                      <span>Attachment</span>
+                                                      <input type="file" multiple="" name="files[]">
+                                                    </span>
+                                                    <button type="submit" class="btn btn-send" data-original-title="" title="">Send</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <ul class="inbox-nav inbox-divider">
+                        <li class="active">
+                            <a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger pull-right">0</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-envelope-o"></i> Sent Mail<span class="label label-danger pull-right">0</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bookmark-o"></i> Important</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-tree"></i> Greenbox <span class="label label-success pull-right">0</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class=" fa fa-trash-o"></i> Trash<span class="label label-success pull-right">0</span></a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked labels-info inbox-divider">
+                        <li> <h4>Labels</h4> </li>
+                        <li> <a href="#"> <i class=" fa fa-sign-blank text-danger"></i> Work </a> </li>
+                        <li> <a href="#"> <i class=" fa fa-sign-blank text-success"></i> Design </a> </li>
+                        <li> <a href="#"> <i class=" fa fa-sign-blank text-info "></i> Family </a>
+                        </li><li> <a href="#"> <i class=" fa fa-sign-blank text-warning "></i> Friends </a>
+                        </li><li> <a href="#"> <i class=" fa fa-sign-blank text-primary "></i> Office </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked labels-info ">
+                        <li> <h4>Buddy online</h4> </li>
+                        <li> <a href="#"> <i class=" fa fa-circle text-success"></i> Jhone Doe <p>I do not think</p></a>  </li>
+                        <li> <a href="#"> <i class=" fa fa-circle text-danger"></i> Sumon <p>Busy with coding</p></a> </li>
+                        <li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Anjelina Joli <p>I out of control</p></a>
+                        </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Jonathan Smith <p>I am not here</p></a>
+                        </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i> Tawseef <p>I do not think</p></a>
+                        </li>
+                    </ul>
+                    <div class="inbox-body text-center">
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn mini btn-primary" data-original-title="" title="">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn mini btn-success" data-original-title="" title="">
+                                <i class="fa fa-phone"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn mini btn-info" data-original-title="" title="">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="lg-side">
+                <div class="inbox-head">
+                    <h3>Inbox</h3>
+                    <form class="pull-right position" action="#">
+                        <div class="input-append">
+                            <input type="text" placeholder="Search Mail" class="sr-input">
+                            <button type="button" class="btn sr-btn" data-original-title="" title=""><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="inbox-body">
+                    
+                                             
+               
+                
+                    <div class="container">
+                    <div class="row">
+                        <h2> <strong class="fonctionnalite">Greener Mailbox</strong></h2>
+                        <p>The aim of this tool is to help you clean the e-mails contained in your box mail in order</p>
+                        <p>to reduce the CO2 emission coming from mails storage. </p>
+                       
+                        <h3>Here is the operating mode:</h3>
+                        <p>1. Please choose an user to show his mailbox</p>
+                        <p></p>
+                        <p>2. Then, you can click on <strong class="fonctionnalite">Good practices</strong>, in the Greenbox button drop-down,</p>
+                        <p>to clean the mail box from mails containing no or little information</p>
+                        <p> </p>
+                        <p>3. To beneficiate of our removal recommendation system, you can click on <strong class="fonctionnalite">Removal recommendation</strong>,</p>
+                        <p>in the Greenbox button drop-down. It will propose you a number of mails that are selected thanks to our </p>
+                        <p>algorithm with a high probability of deletion. You can choose the ones you want to delete </p>
+                        <p>and then press on the <strong class="fonctionnalite">Clean up</strong> button to suppress them.</p>
+                        <p> </p>
+                        <p>4. Then check the benefice of our actions on the button <strong class="fonctionnalite">Statistics</strong>, in the Greenbox button drop-down. </p>
+                    </div></div>
+
+                </aside>
+            </div>
+        <!--mail inbox end-->
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+</script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};             
+</script>
+<script type="text/javascript">
+    $(function() {
+        $('form a').click(function(event){
+            event.preventDefault();
+        }); 
+        $("form select").bind("change", function(){
+          $(this).closest('form').submit();  
+        });
+        $("#anext").bind("click", function(){
+            if($("#deb_nbrenext").val()+20<$("#nbre_mailsnext").val()){
+          $(this).closest('form').submit();  }
+        });
+        $("#aprev").bind("click", function(){
+            if($("#deb_nbrenext").val()!=0){
+          $(this).closest('form').submit(); } 
+        });
+
+    });
+</script>
+</body>
+</html>
